@@ -6,7 +6,7 @@ export const projectsData = [
     description:
       "A modern animated portfolio website built using React, Tailwind CSS, Framer Motion and EmailJS featuring dynamic themes, project showcase, skills section and interactive UI.",
     tech: ["React", "Tailwind CSS", "Framer Motion", "EmailJS"],
-    github: "https://github.com/shubh791/shubham-portfolio",
+    github: "https://github.com/shubh791/portfolio",
     image: "/projects/portfolio.png",
     featured: true,
   },
