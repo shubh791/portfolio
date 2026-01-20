@@ -55,69 +55,24 @@ function Footer() {
 
           <ul className="space-y-3 text-base">
 
-            <li>
-              <a
-                href="#home"
-                className="
-                opacity-80
-                hover:text-[var(--accent)]
-                hover:translate-x-1
-                transition-all
-                duration-300
-                inline-block
-                "
-              >
-                Home
-              </a>
-            </li>
-
-            <li>
-              <a
-                href="#about"
-                className="
-                opacity-80
-                hover:text-[var(--accent)]
-                hover:translate-x-1
-                transition-all
-                duration-300
-                inline-block
-                "
-              >
-                About
-              </a>
-            </li>
-
-            <li>
-              <a
-                href="#skills"
-                className="
-                opacity-80
-                hover:text-[var(--accent)]
-                hover:translate-x-1
-                transition-all
-                duration-300
-                inline-block
-                "
-              >
-                Skills
-              </a>
-            </li>
-
-            <li>
-              <a
-                href="#projects"
-                className="
-                opacity-80
-                hover:text-[var(--accent)]
-                hover:translate-x-1
-                transition-all
-                duration-300
-                inline-block
-                "
-              >
-                Projects
-              </a>
-            </li>
+            {["home", "about", "skills", "projects"].map((item) => (
+              <li key={item}>
+                <a
+                  href={`#${item}`}
+                  className="
+                  opacity-80
+                  hover:text-[var(--accent)]
+                  hover:translate-x-1
+                  transition-all
+                  duration-300
+                  inline-block
+                  capitalize
+                  "
+                >
+                  {item}
+                </a>
+              </li>
+            ))}
 
           </ul>
         </div>
@@ -130,7 +85,12 @@ function Footer() {
 
           <div className="flex gap-5">
 
+            {/* GITHUB */}
             <a
+              href="https://github.com/shubh791"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="GitHub"
               className="
               p-3
               rounded-full
@@ -147,7 +107,12 @@ function Footer() {
               <GitHubIcon />
             </a>
 
+            {/* LINKEDIN */}
             <a
+              href="https://linkedin.com/in/shubham-panghal"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="LinkedIn"
               className="
               p-3
               rounded-full
@@ -164,7 +129,10 @@ function Footer() {
               <LinkedInIcon />
             </a>
 
+            {/* EMAIL */}
             <a
+              href="mailto:shubhampanghal.work@gmail.com"
+              title="Email"
               className="
               p-3
               rounded-full
