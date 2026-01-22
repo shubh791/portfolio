@@ -40,43 +40,51 @@ function Hero() {
       >
 
         {/* LEFT CONTENT */}
-        <div>
+       <div className="space-y-4">
 
-          <h1 className="text-3xl md:text-5xl font-bold leading-tight">
-            Hi, I'm{" "}
-            <span style={{ color: "var(--accent)" }}>
-              Shubham Panghal
-            </span>
-          </h1>
+  <h1 className="text-3xl md:text-5xl font-bold leading-tight">
+    Hi, I'm{" "}
+    <span style={{ color: "var(--accent)" }}>
+      Shubham Panghal
+    </span>
+  </h1>
 
-          <p className="mt-4 opacity-80 text-sm md:text-base">
-            Full Stack Web Developer | Building Modern Web Experiences
-          </p>
+  <p className="opacity-80 text-sm md:text-base">
+    Full Stack & Web3 Developer | Building Scalable Blockchain-Powered Applications
+  </p>
 
-          {/* RESUME CTA */}
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="
-              inline-block
-              mt-6
-              bg-[var(--accent)]
-              text-black
-              px-7
-              py-3
-              rounded-lg
-              font-semibold
-              hover:shadow-[0_0_30px_var(--accent)]
-              hover:scale-105
-              transition-all
-              duration-300
-            "
-          >
-            View Resume
-          </a>
+  {/* Last Updated Tag */}
+  <span className="inline-block text-xs bg-white/10 px-3 py-1 rounded-full opacity-70">
+    Last Updated: Jan 2026
+  </span>
 
-        </div>
+  {/* RESUME CTA */}
+  <div>
+    <a
+      href="/resume.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="
+        inline-block
+        mt-3
+        bg-[var(--accent)]
+        text-black
+        px-7
+        py-3
+        rounded-lg
+        font-semibold
+        hover:shadow-[0_0_30px_var(--accent)]
+        hover:scale-105
+        transition-all
+        duration-300
+      "
+    >
+      View Resume
+    </a>
+  </div>
+
+</div>
+
 
         {/* RIGHT TERMINAL PREVIEW */}
         <div className="flex justify-center">

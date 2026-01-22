@@ -1,49 +1,65 @@
 export const skillsData = [
 
   {
-    title: "Frontend",
+    title: "Frontend Development",
     icon: "💻",
     skills: [
-      "HTML",
-      "CSS",
-      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "JavaScript (ES6+)",
       "Bootstrap",
       "Tailwind CSS",
-      "React"
+      "React.js",
+      "Responsive Web Design"
     ],
   },
 
   {
-    title: "Backend",
+    title: "Backend Development",
     icon: "⚙️",
     skills: [
       "Node.js",
       "Express.js",
       "PostgreSQL",
-      "REST APIs"
+      "RESTful APIs",
+      "Authentication & Authorization"
     ],
   },
 
   {
-    title: "Tools & DevOps",
+    title: "Blockchain & Web3",
+    icon: "🔗",
+    skills: [
+      "Internet Computer (ICP)",
+      "Motoko",
+      "DFX SDK",
+      "Smart Contract Integration",
+      "Decentralized Application (dApp) Development"
+    ],
+  },
+
+  {
+    title: "Tools & Workflow",
     icon: "🛠️",
     skills: [
       "Git",
       "GitHub",
       "Postman",
       "VS Code",
-      "CodeSandbox"
+      "API Testing",
+      "Debugging"
     ],
   },
 
   {
-    title: "Other",
+    title: "Other Skills",
     icon: "✨",
     skills: [
       "JWT Authentication",
       "API Integration",
-      "Responsive Design",
-      "UI/UX Basics"
+      "UI/UX Fundamentals",
+      "Clean Code Practices",
+      "Problem Solving"
     ],
   },
 

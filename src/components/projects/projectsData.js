@@ -1,15 +1,24 @@
 export const projectsData = [
 
   {
-    id: 1,
-    title: "Shubham Portfolio — Developer Portfolio Website",
-    description:
-      "A modern animated portfolio website built using React, Tailwind CSS, Framer Motion and EmailJS featuring dynamic themes, project showcase, skills section and interactive UI.",
-    tech: ["React", "Tailwind CSS", "Framer Motion", "EmailJS"],
-    github: "https://github.com/shubh791/portfolio",
-    image: "/projects/portfolio.png",
-    featured: true,
-  },
+  id: 1,
+  title: "DBank — Decentralized Banking Application (ICP)",
+  description:
+    "A decentralized banking application built on Internet Computer (ICP) blockchain featuring secure deposits & withdrawals, real-time balance tracking, auto-compounding interest system, transaction history, live statistics dashboard and modern responsive UI.",
+  tech: [
+    "React",
+    "Tailwind CSS",
+    "Internet Computer (ICP)",
+    "Motoko",
+    "DFX",
+    "Blockchain",
+    "Web3"
+  ],
+  github: "https://github.com/shubh791/dbank-icp",
+  image: "/projects/dbank.png",
+  featured: true,
+},
+    
 
   {
     id: 2,
@@ -40,5 +49,16 @@ export const projectsData = [
     github: "https://github.com/shubh791/Simon-Game",
     image: "/projects/simon.png",
   },
+  
+ {
+    id: 5,
+    title: "Shubham Portfolio — Developer Portfolio Website",
+    description:
+      "A modern animated portfolio website built using React, Tailwind CSS, Framer Motion and EmailJS featuring dynamic themes, project showcase, skills section and interactive UI.",
+    tech: ["React", "Tailwind CSS", "Framer Motion", "EmailJS"],
+    github: "https://github.com/shubh791/portfolio",
+    image: "/projects/portfolio.png",
+    
+  }
 
 ];

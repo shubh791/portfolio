@@ -26,17 +26,14 @@ function About() {
             About <span style={{ color: "var(--accent)" }}>Me</span>
           </h2>
 
-          <p className="opacity-75 leading-relaxed">
-            I'm <span className="font-semibold">Shubham Panghal</span>, a passionate
-            Full Stack Web Developer focused on building fast, responsive and
-            scalable web applications. I enjoy solving real-world problems and
-            continuously improving my development skills.
-          </p>
+        <p className="opacity-75 leading-relaxed">
+  I'm <span className="font-semibold">Shubham Panghal</span>, a Full Stack Developer passionate about building high-performance, scalable, and modern web applications. I enjoy transforming complex problems into clean, efficient, and user-friendly solutions.
+</p>
 
-          <p className="mt-4 opacity-70 leading-relaxed">
-            Currently exploring backend architecture, databases and API
-            integrations while polishing frontend UI/UX experiences.
-          </p>
+<p className="mt-4 opacity-70 leading-relaxed">
+  Currently focused on backend systems, database optimization, API development, and exploring decentralized application development alongside modern frontend design practices.
+</p>
+
         </motion.div>
 
         {/* RIGHT STATS */}
