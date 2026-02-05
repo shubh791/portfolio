@@ -1,27 +1,45 @@
 export const projectsData = [
 
   {
-  id: 1,
-  title: "DBank — Decentralized Banking Application (ICP)",
-  description:
-    "A decentralized banking application built on Internet Computer (ICP) blockchain featuring secure deposits & withdrawals, real-time balance tracking, auto-compounding interest system, transaction history, live statistics dashboard and modern responsive UI.",
-  tech: [
-    "React",
-    "Tailwind CSS",
-    "Internet Computer (ICP)",
-    "Motoko",
-    "DFX",
-    "Blockchain",
-    "Web3"
-  ],
-  github: "https://github.com/shubh791/dbank-icp",
-  image: "/projects/dbank.png",
-  featured: true,
-},
-    
+    id: 1,
+    title: "Cybergram — Cyber Security Awareness Platform",
+    description:
+      "A full-stack cybersecurity awareness platform enabling anonymous cyber-scam reporting, real-time interaction, secure authentication, chat system, notifications, cloud media handling and fully responsive production deployment with custom domain.",
+    tech: [
+      "React",
+      "Node.js",
+      "Express",
+      "PostgreSQL",
+      "Socket.io",
+      "Cloudinary",
+      "Tailwind CSS"
+    ],
+    live: "https://cybergram.in",
+    image: "/projects/cybergram.png",
+    featured: true,
+  },
 
   {
     id: 2,
+    title: "DBank — Decentralized Banking Application (ICP)",
+    description:
+      "A decentralized banking application built on Internet Computer (ICP) blockchain featuring secure deposits & withdrawals, real-time balance tracking, auto-compounding interest system, transaction history, live statistics dashboard and modern responsive UI.",
+    tech: [
+      "React",
+      "Tailwind CSS",
+      "Internet Computer (ICP)",
+      "Motoko",
+      "DFX",
+      "Blockchain",
+      "Web3"
+    ],
+    github: "https://github.com/shubh791/dbank-icp",
+    image: "/projects/dbank.png",
+    featured: true,
+  },
+
+  {
+    id: 3,
     title: "Readify — Personal Reading Tracker",
     description:
       "A full-stack reading tracker that allows users to manage books, track reading time, save notes, analyze statistics and fetch book data using Open Library API with PostgreSQL backend.",
@@ -31,7 +49,7 @@ export const projectsData = [
   },
 
   {
-    id: 3,
+    id: 4,
     title: "Skillify — Online Learning Platform UI",
     description:
       "A modern responsive e-learning website UI inspired by popular EdTech platforms with clean layout design, reusable components and mobile-first approach.",
@@ -41,7 +59,7 @@ export const projectsData = [
   },
 
   {
-    id: 4,
+    id: 5,
     title: "Simon Memory Game",
     description:
       "A classic Simon memory game built using JavaScript featuring dynamic color sequences, level progression system, sound effects and clean game logic implementation.",
@@ -49,16 +67,15 @@ export const projectsData = [
     github: "https://github.com/shubh791/Simon-Game",
     image: "/projects/simon.png",
   },
-  
- {
-    id: 5,
+
+  {
+    id: 6,
     title: "Shubham Portfolio — Developer Portfolio Website",
     description:
       "A modern animated portfolio website built using React, Tailwind CSS, Framer Motion and EmailJS featuring dynamic themes, project showcase, skills section and interactive UI.",
     tech: ["React", "Tailwind CSS", "Framer Motion", "EmailJS"],
     github: "https://github.com/shubh791/portfolio",
     image: "/projects/portfolio.png",
-    
   }
 
 ];

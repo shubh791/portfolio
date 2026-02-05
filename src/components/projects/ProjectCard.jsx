@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 
 function ProjectCard({ project }) {
+  const isLiveProject = Boolean(project.live);
+
   return (
     <motion.div
       whileHover={{ y: -8 }}
@@ -25,7 +27,6 @@ function ProjectCard({ project }) {
 
       {/* IMAGE PREVIEW */}
       <div className="relative h-[180px] bg-black overflow-hidden">
-
         <img
           src={project.image}
           alt={project.title}
@@ -36,7 +37,6 @@ function ProjectCard({ project }) {
             object-cover
             transition-transform
             duration-500
-            group-hover:scale-110
             hover:scale-110
           "
         />
@@ -45,27 +45,19 @@ function ProjectCard({ project }) {
         {project.featured && (
           <span
             className="
-              absolute
-              top-3
-              left-3
-              px-3
-              py-1
-              text-xs
-              rounded-full
+              absolute top-3 left-3
+              px-3 py-1
+              text-xs rounded-full
               bg-[var(--accent)]
-              text-black
-              font-semibold
-              shadow-lg
-              tracking-wide
+              text-black font-semibold
+              shadow-lg tracking-wide
             "
           >
             FEATURED
           </span>
         )}
 
-        {/* GRADIENT OVERLAY */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-
       </div>
 
       {/* CONTENT */}
@@ -81,18 +73,13 @@ function ProjectCard({ project }) {
 
         {/* TECH STACK */}
         <div className="flex flex-wrap gap-2 mt-4">
-
           {project.tech.map((item, index) => (
             <span
               key={index}
               className="
-                px-3
-                py-1
-                text-xs
-                rounded-full
+                px-3 py-1 text-xs rounded-full
                 bg-black/40
-                border
-                border-white/10
+                border border-white/10
                 hover:border-[var(--accent)]
                 transition
               "
@@ -100,39 +87,30 @@ function ProjectCard({ project }) {
               {item}
             </span>
           ))}
-
         </div>
 
-        {/* GITHUB BUTTON */}
+        {/* ACTION BUTTON */}
         <div className="mt-auto pt-5">
-
           <a
-            href={project.github}
+            href={isLiveProject ? project.live : project.github}
             target="_blank"
             rel="noopener noreferrer"
             className="
-              block
-              text-center
-              py-2.5
-              rounded-lg
-              border
-              border-[var(--accent)]
+              block text-center
+              py-2.5 rounded-lg
+              border border-[var(--accent)]
               text-[var(--accent)]
               hover:bg-[var(--accent)]
               hover:text-black
-              transition-all
-              duration-300
-              text-sm
-              font-medium
+              transition-all duration-300
+              text-sm font-medium
             "
           >
-            View on GitHub
+            {isLiveProject ? "View Live" : "View on GitHub"}
           </a>
-
         </div>
 
       </div>
-
     </motion.div>
   );
 }
