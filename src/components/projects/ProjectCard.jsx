@@ -5,83 +5,89 @@ function ProjectCard({ project }) {
 
   return (
     <motion.div
-      whileHover={{ y: -8 }}
-      transition={{ type: "spring", stiffness: 180 }}
+      whileHover={{ y: -6 }}
+      transition={{ duration: 0.25 }}
       className="
+        group
+        relative
         h-full
-        min-h-[460px]
-        flex
-        flex-col
-        rounded-2xl
-        bg-[rgba(15,23,42,0.65)]
-        backdrop-blur-xl
-        border
-        border-white/10
-        hover:border-[var(--accent)]
-        hover:shadow-[0_0_35px_var(--accent)]
+        flex flex-col
+        rounded-3xl
         overflow-hidden
-        transition-all
-        duration-300
+        bg-gradient-to-br from-[#0b1220]/95 to-[#020617]/95
+        border border-white/10
+        backdrop-blur-xl
+        transition-all duration-300
+        hover:border-[var(--accent)]
+        hover:shadow-xl
       "
     >
 
-      {/* IMAGE PREVIEW */}
-      <div className="relative h-[180px] bg-black overflow-hidden">
+      {/* IMAGE */}
+      <div className="relative h-[210px] overflow-hidden">
+
         <img
           src={project.image}
           alt={project.title}
           loading="lazy"
           className="
-            w-full
-            h-full
-            object-cover
-            transition-transform
-            duration-500
-            hover:scale-110
+            w-full h-full object-cover
+            transition duration-700
+            group-hover:scale-105
           "
         />
 
-        {/* FEATURED BADGE */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
         {project.featured && (
-          <span
-            className="
-              absolute top-3 left-3
-              px-3 py-1
-              text-xs rounded-full
-              bg-[var(--accent)]
-              text-black font-semibold
-              shadow-lg tracking-wide
-            "
-          >
-            FEATURED
+          <span className="
+            absolute top-4 left-4
+            px-3 py-1 text-[10px]
+            uppercase tracking-wider
+            rounded-full
+            bg-[var(--accent)]
+            text-black font-semibold
+          ">
+            Featured
           </span>
         )}
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
       </div>
 
       {/* CONTENT */}
-      <div className="p-5 flex flex-col flex-1">
+      <div className="p-7 flex flex-col flex-1">
 
-        <h3 className="text-lg font-semibold text-[var(--accent)]">
+        <h3 className="
+          text-xl font-semibold mb-3
+          group-hover:text-[var(--accent)]
+          transition
+        ">
           {project.title}
         </h3>
 
-        <p className="text-sm opacity-75 mt-2 leading-relaxed flex-1 line-clamp-4">
+        <p className="
+          text-sm text-gray-400
+          leading-relaxed
+          flex-1
+          line-clamp-4
+        ">
           {project.description}
         </p>
 
-        {/* TECH STACK */}
-        <div className="flex flex-wrap gap-2 mt-4">
+        {/* TECH */}
+        <div className="flex flex-wrap gap-2 mt-6">
           {project.tech.map((item, index) => (
             <span
               key={index}
               className="
-                px-3 py-1 text-xs rounded-full
-                bg-black/40
+                text-[11px]
+                px-3 py-1
+                rounded-full
+                bg-white/5
                 border border-white/10
-                hover:border-[var(--accent)]
+                text-gray-300
                 transition
+                hover:border-[var(--accent)]
               "
             >
               {item}
@@ -89,24 +95,24 @@ function ProjectCard({ project }) {
           ))}
         </div>
 
-        {/* ACTION BUTTON */}
-        <div className="mt-auto pt-5">
+        {/* CTA */}
+        <div className="mt-auto pt-8">
           <a
             href={isLiveProject ? project.live : project.github}
             target="_blank"
             rel="noopener noreferrer"
             className="
               block text-center
-              py-2.5 rounded-lg
+              py-3 rounded-xl
+              font-medium text-sm
               border border-[var(--accent)]
               text-[var(--accent)]
+              transition-all duration-300
               hover:bg-[var(--accent)]
               hover:text-black
-              transition-all duration-300
-              text-sm font-medium
             "
           >
-            {isLiveProject ? "View Live" : "View on GitHub"}
+            {isLiveProject ? "View Live Project" : "View Source Code"}
           </a>
         </div>
 

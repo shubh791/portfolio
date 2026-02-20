@@ -3,177 +3,132 @@ import emailjs from "emailjs-com";
 import { motion, AnimatePresence } from "framer-motion";
 
 function ContactCTA() {
-
   const [step, setStep] = useState(1);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [error, setError] = useState("");
 
-  const resetForm = () => {
-    setStep(1);
-    setName("");
-    setEmail("");
-    setSuccess(false);
-    setError("");
-    setLoading(false);
-  };
-
-  // ---------- NAME ENTER ----------
-  const handleNameEnter = (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-
-      if (name.trim().length > 1) {
-        setStep(2);
-      }
-    }
-  };
-
-  // ---------- EMAIL ENTER + SEND ----------
-  const handleEmailEnter = async (e) => {
-    if (e.key !== "Enter") return;
-
-    e.preventDefault();
-
-    if (!email.trim()) return;
-
+  const sendMail = async () => {
     setLoading(true);
-    setError("");
 
     try {
-
       await emailjs.send(
         "service_pahxr4t",
         "template_4dc0j2s",
-        {
-          name: name,
-          email: email,
-          time: new Date().toLocaleString(),
-        },
+        { name, email },
         "JS_tbNVj5ms5_yXMw"
       );
 
       setSuccess(true);
       setLoading(false);
 
-      // AUTO RESET AFTER SUCCESS
       setTimeout(() => {
-        resetForm();
-      }, 2200);
+        setStep(1);
+        setName("");
+        setEmail("");
+        setSuccess(false);
+      }, 2500);
 
-    } catch (err) {
-
-      console.error(err);
-
-      setError("Email Failed ❌ Try Again");
+    } catch {
       setLoading(false);
-
-      // AUTO RESET AFTER ERROR
-      setTimeout(() => {
-        resetForm();
-      }, 2200);
     }
   };
 
   return (
-
-    // ✅ THIS ID IS REQUIRED FOR HEADER SCROLL
     <section
       id="contact"
-      className="relative py-24 flex justify-center"
+      className="relative py-40 px-6 text-center overflow-hidden"
     >
 
-      <div className="w-full max-w-xl text-center">
+      {/* Animated Gradient Glow */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[var(--accent)]/20 via-purple-500/10 to-cyan-500/20 blur-[140px]" />
 
-        <h2 className="text-3xl font-bold mb-3">
-          Hey 👋 Let's <span className="text-[var(--accent)]">Connect</span>
-        </h2>
+      <div className="relative z-10 max-w-3xl mx-auto">
 
-        <p className="opacity-70 mb-10">
-          Enter your details and I'll reach you soon
+        {/* BIG BRAND STATEMENT */}
+        <motion.h2
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="text-4xl md:text-6xl font-bold mb-6"
+        >
+          Let’s Create{" "}
+          <span className="text-[var(--accent)]">
+            Impact Together
+          </span>
+        </motion.h2>
+
+        <p className="text-gray-400 mb-12 text-lg">
+          Building scalable digital products, modern web experiences,
+          and innovative solutions.
         </p>
 
-        <div className="relative">
+        {/* FORM */}
+        <AnimatePresence>
 
-          {/* NAME INPUT */}
-          <AnimatePresence>
-            {step === 1 && !success && (
-              <motion.input
-                key="name"
-                autoFocus
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                onKeyDown={handleNameEnter}
-                placeholder="Enter your name"
-                className="w-full px-5 py-4 rounded-xl bg-black/50 border border-white/10 outline-none text-center"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-              />
-            )}
-          </AnimatePresence>
-
-          {/* EMAIL INPUT */}
-          <AnimatePresence>
-            {step === 2 && !success && (
-              <motion.input
-                key="email"
-                autoFocus
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                onKeyDown={handleEmailEnter}
-                placeholder="Enter your email"
-                className="w-full px-5 py-4 rounded-xl bg-black/50 border border-white/10 outline-none text-center"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-              />
-            )}
-          </AnimatePresence>
-
-          {/* LOADING */}
-          {loading && (
-            <p className="mt-4 text-sm text-[var(--accent)] animate-pulse">
-              Sending...
-            </p>
+          {step === 1 && !success && (
+            <motion.input
+              key="name"
+              placeholder="Your Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && setStep(2)}
+              className="
+                w-full max-w-lg mx-auto block
+                px-6 py-4 rounded-full
+                bg-white/5 border border-white/10
+                text-center backdrop-blur-xl
+                focus:border-[var(--accent)]
+                outline-none transition
+              "
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+            />
           )}
 
-          {/* ERROR */}
-          {error && (
-            <p className="mt-4 text-red-500 text-sm">
-              {error}
-            </p>
+          {step === 2 && !success && (
+            <motion.input
+              key="email"
+              type="email"
+              placeholder="Your Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && sendMail()}
+              className="
+                w-full max-w-lg mx-auto block
+                px-6 py-4 rounded-full
+                bg-white/5 border border-white/10
+                text-center backdrop-blur-xl
+                focus:border-[var(--accent)]
+                outline-none transition
+              "
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+            />
           )}
 
-          {/* SUCCESS */}
-          <AnimatePresence>
-            {success && (
-              <motion.div
-                className="mt-6 flex flex-col items-center"
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-              >
+        </AnimatePresence>
 
-                <div className="w-16 h-16 rounded-full bg-green-500 flex items-center justify-center text-3xl text-white">
-                  ✓
-                </div>
+        {loading && (
+          <p className="mt-6 text-[var(--accent)] animate-pulse">
+            Sending…
+          </p>
+        )}
 
-                <p className="mt-4 text-green-400 font-medium">
-                  Message Sent Successfully 🚀
-                </p>
-
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-        </div>
+        {success && (
+          <motion.p
+            className="mt-6 text-green-400 font-medium"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+          >
+            Message Sent 🚀
+          </motion.p>
+        )}
 
       </div>
-
     </section>
   );
 }

@@ -1,94 +1,158 @@
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+
+const roles = [
+  "Full-Stack Developer",
+  "React Specialist",
+  "Backend System Builder",
+  "Performance-Focused Engineer"
+];
 
 function About() {
+  const [roleIndex, setRoleIndex] = useState(0);
+
+  /* ROLE CYCLING */
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setRoleIndex((prev) => (prev + 1) % roles.length);
+    }, 2600);
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section
       id="about"
-      className="relative py-24 px-6 md:px-12 overflow-hidden"
+      className="relative py-32 px-6 md:px-12 overflow-hidden"
     >
 
       {/* BACKGROUND GLOW */}
       <div
-        className="absolute top-[-120px] right-[-120px] w-[300px] h-[300px] rounded-full blur-[120px] opacity-20 pointer-events-none"
+        className="absolute -top-32 right-[-150px] w-[420px] h-[420px] rounded-full blur-[150px] opacity-20"
         style={{ background: "var(--accent)" }}
       />
 
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-14 items-center relative z-10">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center relative z-10">
 
-        {/* LEFT TEXT */}
+        {/* LEFT CONTENT */}
         <motion.div
-          initial={{ opacity: 0, x: -40 }}
+          initial={{ opacity: 0, x: -70 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
+          className="space-y-7"
         >
-          <h2 className="text-4xl font-bold mb-4">
-            About <span style={{ color: "var(--accent)" }}>Me</span>
+
+          <h2 className="text-4xl md:text-5xl font-bold">
+            About{" "}
+            <span style={{ color: "var(--accent)" }}>
+              Me
+            </span>
           </h2>
 
-        <p className="opacity-75 leading-relaxed">
-  I'm <span className="font-semibold">Shubham Panghal</span>, a Full Stack Developer passionate about building high-performance, scalable, and modern web applications. I enjoy transforming complex problems into clean, efficient, and user-friendly solutions.
-</p>
+          {/* LIVE ROLE */}
+          <p className="text-lg font-medium text-[var(--accent)] transition-all">
+            {roles[roleIndex]}
+          </p>
 
-<p className="mt-4 opacity-70 leading-relaxed">
-  Currently focused on backend systems, database optimization, API development, and exploring decentralized application development alongside modern frontend design practices.
-</p>
+          <p className="text-gray-300 leading-relaxed">
+            I'm <span className="font-semibold">Shubham Panghal</span>,
+            a passionate full-stack developer with{" "}
+            <span style={{ color: "var(--accent)" }}>
+              1+ year practical development experience
+            </span>{" "}
+            through real-world projects, production deployments,
+            and continuous hands-on learning.
+          </p>
 
+          <p className="text-gray-400 leading-relaxed">
+            I focus on building scalable web applications,
+            modern UI systems, optimized backend architectures,
+            and performance-driven digital products.
+            Clean code, reliability, and user experience
+            are always my priorities.
+          </p>
+
+          {/* EXPERTISE TAGS */}
+          <div className="flex flex-wrap gap-3 pt-3">
+            {[
+              "Full Stack Development",
+              "React Ecosystem",
+              "Backend APIs",
+              "Database Optimization",
+              "Production Deployment",
+              "Modern UI Systems"
+            ].map((tag, i) => (
+              <span
+                key={i}
+                className="
+                  px-4 py-1 text-xs
+                  bg-white/10
+                  border border-white/10
+                  rounded-full
+                  text-gray-300
+                  hover:border-[var(--accent)]
+                  transition
+                "
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
         </motion.div>
 
-        {/* RIGHT STATS */}
+        {/* RIGHT VISUAL EXPERIENCE PANEL */}
         <motion.div
-          initial={{ opacity: 0, x: 40 }}
+          initial={{ opacity: 0, x: 70 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
           className="grid grid-cols-2 gap-6"
         >
 
           <StatCard number="15+" label="Projects Built" />
-          <StatCard number="1+" label="Years Learning" />
-          <StatCard number="10+" label="Technologies" />
-          <StatCard number="100%" label="Dedication" />
+          <StatCard number="1+ Yr" label="Hands-on Experience" />
+          <StatCard number="10+" label="Technologies Used" />
+          <StatCard number="∞" label="Learning Mode" />
 
         </motion.div>
 
       </div>
-
     </section>
   );
 }
 
 export default About;
 
-/* ---------------- STAT CARD ---------------- */
+
+/* ---------- STAT CARD ---------- */
 
 function StatCard({ number, label }) {
   return (
-    <div
+    <motion.div
+      whileHover={{ scale: 1.06 }}
       className="
-      bg-[rgba(15,23,42,0.6)]
-      backdrop-blur-xl
-      border
-      border-white/10
-      rounded-xl
-      p-6
-      text-center
-      hover:border-[var(--accent)]
-      transition-all
-      duration-300
-      hover:shadow-[0_0_25px_var(--accent)]
+        bg-white/5
+        backdrop-blur-xl
+        border border-white/10
+        rounded-2xl
+        p-7
+        text-center
+        transition-all duration-300
+        hover:border-[var(--accent)]
+        hover:shadow-[0_0_35px_var(--accent)]
       "
     >
       <h3
-        className="text-3xl font-bold"
+        className="text-3xl font-bold mb-2"
         style={{ color: "var(--accent)" }}
       >
         {number}
       </h3>
 
-      <p className="text-sm opacity-70 mt-1">
+      <p className="text-sm text-gray-400">
         {label}
       </p>
-    </div>
+    </motion.div>
   );
 }

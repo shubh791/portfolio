@@ -1,11 +1,11 @@
 import Header from "./components/Header";
 import Hero from "./components/Hero";
-import Footer from "./components/Footer";
-import SkillsSection from "./components/skills/SkillsSection";
 import About from "./components/About";
+import SkillsSection from "./components/skills/SkillsSection";
+import Services from "./components/services/Services";
 import ProjectsSection from "./components/projects/ProjectsSection";
 import ContactCTA from "./components/ContactCTA";
-
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -14,6 +14,7 @@ function App() {
       <Hero />
       <About />
       <SkillsSection />
+      <Services />
       <ProjectsSection />
       <ContactCTA />
       <Footer />

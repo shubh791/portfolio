@@ -1,39 +1,36 @@
+import { motion } from "framer-motion";
+
 function SkillBadge({ name }) {
   return (
-    <span
+    <motion.span
+      whileHover={{ y: -3 }}
+      transition={{ duration: 0.2 }}
       className="
+        group
+        relative
         inline-flex
         items-center
         justify-center
-        px-3
-        py-1.5
-        text-xs
-        font-medium
+        px-4 py-1.5
+        text-xs font-medium
         rounded-full
-
-        bg-white/5
-        backdrop-blur-md
-
-        border
-        border-white/10
-
+        bg-gradient-to-r from-white/5 to-white/10
+        border border-white/10
         text-gray-300
-
-        transition-all
-        duration-300
-        ease-out
-
-        hover:text-[var(--accent)]
-        hover:border-[var(--accent)]
-        hover:bg-[rgba(255,255,255,0.08)]
-        hover:shadow-[0_0_15px_var(--accent)]
-
+        backdrop-blur-xl
+        overflow-hidden
+        transition-all duration-300
         cursor-default
         select-none
       "
     >
-      {name}
-    </span>
+      {/* Subtle hover glow */}
+      <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-[var(--accent)]/10 blur-xl" />
+
+      <span className="relative z-10 group-hover:text-[var(--accent)] transition">
+        {name}
+      </span>
+    </motion.span>
   );
 }
 

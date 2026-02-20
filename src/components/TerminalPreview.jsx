@@ -1,126 +1,136 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
-const sequences = [
-  {
-    command: "npm run dev",
-    output: ["✔ Server Running", "✔ API Connected", "✔ Build Successful"]
-  },
-  {
-    command: "git push origin main",
-    output: ["Deploying...", "✔ Deployment Successful"]
-  },
-  {
-    command: "npm run build",
-    output: ["Optimizing Assets...", "✔ Production Ready"]
-  }
+const techStack = [
+  "React Frontend",
+  "Node Backend",
+  "PostgreSQL DB",
+  "Cloud Deployment",
+  "Real-Time APIs",
 ];
 
-function TerminalPreview() {
+function SystemPanel() {
+  const [uptime, setUptime] = useState(0);
+  const [metric, setMetric] = useState(98);
+  const [stackIndex, setStackIndex] = useState(0);
 
-  const [seqIndex, setSeqIndex] = useState(0);
-  const [typedText, setTypedText] = useState("");
-  const [lineIndex, setLineIndex] = useState(0);
-  const [isTyping, setIsTyping] = useState(true);
-
-  const current = sequences[seqIndex];
-
-  /* TYPING EFFECT */
+  /* Uptime counter */
   useEffect(() => {
+    const timer = setInterval(() => {
+      setUptime((prev) => prev + 1);
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
 
-    if (!isTyping) return;
-
-    const fullText = current.command;
-
-    if (typedText.length < fullText.length) {
-      const timeout = setTimeout(() => {
-        setTypedText(fullText.slice(0, typedText.length + 1));
-      }, 70);
-
-      return () => clearTimeout(timeout);
-    }
-
-    setTimeout(() => {
-      setIsTyping(false);
-    }, 500);
-
-  }, [typedText, isTyping]);
-
-  /* OUTPUT LINES LOOP */
+  /* Metric auto-update */
   useEffect(() => {
+    const metricTimer = setInterval(() => {
+      setMetric(95 + Math.floor(Math.random() * 5));
+    }, 3000);
+    return () => clearInterval(metricTimer);
+  }, []);
 
-    if (isTyping) return;
-
-    if (lineIndex < current.output.length) {
-      const timer = setTimeout(() => {
-        setLineIndex((prev) => prev + 1);
-      }, 700);
-
-      return () => clearTimeout(timer);
-    }
-
-    setTimeout(() => {
-      setTypedText("");
-      setLineIndex(0);
-      setIsTyping(true);
-      setSeqIndex((prev) => (prev + 1) % sequences.length);
-    }, 1500);
-
-  }, [isTyping, lineIndex]);
+  /* Tech stack cycle */
+  useEffect(() => {
+    const stackTimer = setInterval(() => {
+      setStackIndex((prev) => (prev + 1) % techStack.length);
+    }, 2500);
+    return () => clearInterval(stackTimer);
+  }, []);
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
       className="
-      w-[320px]
-      md:w-[420px]
-      lg:w-[460px]
-      bg-black/60
-      backdrop-blur-xl
-      border
-      border-white/10
-      rounded-2xl
-      p-5
-      shadow-2xl
-      font-mono
-      text-sm
-      hover:scale-[1.02]
-      transition-all
-      duration-300
+        w-full max-w-[520px]
+        mx-auto
+        p-6 sm:p-8
+        rounded-3xl
+        bg-[#0b1220]/80
+        border border-white/10
+        backdrop-blur-2xl
+        shadow-2xl
+        relative overflow-hidden
       "
     >
 
-      {/* TERMINAL HEADER */}
-      <div className="flex gap-2 mb-4">
-        <span className="w-3 h-3 bg-red-500 rounded-full"></span>
-        <span className="w-3 h-3 bg-yellow-400 rounded-full"></span>
-        <span className="w-3 h-3 bg-green-500 rounded-full"></span>
+      {/* Accent glow */}
+      <div className="absolute -top-20 -right-20 w-40 h-40 bg-[var(--accent)] opacity-10 blur-3xl rounded-full" />
+
+      {/* HEADER */}
+      <div className="flex justify-between items-center mb-6">
+        <p className="text-xs uppercase tracking-widest opacity-60">
+          Production System
+        </p>
+
+        {/* Heartbeat */}
+        <span className="flex items-center gap-2 text-green-400 text-xs">
+          <span className="w-2 h-2 bg-green-400 rounded-full animate-ping"></span>
+          System Healthy
+        </span>
       </div>
 
-      {/* TERMINAL BODY */}
-      <div className="space-y-2 text-left">
+      {/* CYBERGRAM PROJECT */}
+      <div className="mb-6">
+        <p className="text-xs opacity-60 mb-1">Live Project</p>
 
-        {/* COMMAND LINE */}
-        <div>
-          <span className="text-[var(--accent)]">shubham@portfolio</span>
-          <span className="text-white">:~$ </span>
-          <span className="text-gray-300">{typedText}</span>
+        <a
+          href="https://cybergram.in"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-xl font-semibold text-[var(--accent)] hover:underline"
+        >
+          Cybergram Platform →
+        </a>
 
-          {/* CURSOR */}
-          {isTyping && (
-            <span className="ml-1 animate-pulse text-[var(--accent)]">▌</span>
-          )}
-        </div>
+        <p className="text-xs text-gray-400">
+          Full-stack cybersecurity awareness platform
+        </p>
+      </div>
 
-        {/* OUTPUT */}
-        {current.output.slice(0, lineIndex).map((line, i) => (
-          <p key={i} className="text-green-400">
-            {line}
-          </p>
+      {/* METRICS GRID */}
+      <div className="grid grid-cols-2 gap-4 text-sm mb-6">
+
+        <Metric title="Performance" value={`${metric}%`} />
+        <Metric title="Uptime" value={`${uptime}s`} />
+        <Metric title="Tech Stack" value={techStack[stackIndex]} />
+        <Metric title="Deployment" value="Production" />
+
+      </div>
+
+      {/* API Simulation */}
+      <div className="bg-white/5 border border-white/10 rounded-xl p-3 text-xs font-mono">
+        <span className="opacity-60">API:</span>{" "}
+        <span className="text-green-400 animate-pulse">
+          GET /cybergram/status → 200 OK
+        </span>
+      </div>
+
+      {/* Subtle graph animation */}
+      <div className="mt-6 flex items-end gap-1 h-10">
+        {[10, 18, 12, 20, 15, 22, 16].map((h, i) => (
+          <motion.div
+            key={i}
+            animate={{ height: `${h}px` }}
+            transition={{ duration: 1.2, repeat: Infinity, repeatType: "mirror" }}
+            className="w-2 bg-[var(--accent)] rounded-sm opacity-70"
+          />
         ))}
-
       </div>
 
+    </motion.div>
+  );
+}
+
+function Metric({ title, value }) {
+  return (
+    <div className="bg-white/5 border border-white/10 rounded-xl p-3">
+      <p className="opacity-60 text-xs mb-1">{title}</p>
+      <p className="font-medium">{value}</p>
     </div>
   );
 }
 
-export default TerminalPreview;
+export default SystemPanel;

@@ -6,169 +6,135 @@ function Footer() {
   return (
     <footer
       className="
-      relative
-      mt-28
-      pt-20
-      pb-8
-      px-6
-      md:px-12
-      border-t
-      border-white/10
-      bg-[rgba(2,6,23,0.9)]
-      backdrop-blur-xl
+        relative
+        pt-24 pb-10 px-6 md:px-12
+        border-t border-white/10
+        bg-gradient-to-b from-[#070b14] to-[#020617]
+        overflow-hidden
       "
     >
 
-      {/* TOP CONTENT */}
-      <div
-        className="
-        max-w-7xl
-        mx-auto
-        grid
-        grid-cols-1
-        md:grid-cols-3
-        gap-12
-        mb-12
-        "
-      >
+      {/* Background Glow */}
+      <div className="absolute inset-0 bg-[var(--accent)]/10 blur-[140px] opacity-30" />
 
-        {/* BRAND */}
-        <div>
-          <h3
-            className="text-2xl font-bold mb-3 tracking-wide"
-            style={{ color: "var(--accent)" }}
-          >
-            Shubham Panghal
-          </h3>
+      <div className="relative z-10 max-w-7xl mx-auto">
 
-          <p className="text-sm md:text-base opacity-75 leading-relaxed max-w-sm">
-            Full Stack Web Developer building modern, scalable and user-friendly
-            digital experiences.
+        {/* BRAND MESSAGE */}
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4">
+            Let’s Build Something{" "}
+            <span className="text-[var(--accent)]">
+              Amazing
+            </span>
+          </h2>
+
+          <p className="text-gray-400 max-w-xl mx-auto">
+            Passionate about building scalable web applications,
+            modern UI experiences, and impactful digital products.
           </p>
         </div>
 
-        {/* QUICK LINKS */}
-        <div>
-          <h4 className="font-semibold mb-4 text-lg tracking-wide">
-            Quick Links
-          </h4>
+        {/* MAIN GRID */}
+        <div className="grid md:grid-cols-3 gap-12 mb-16">
 
-          <ul className="space-y-3 text-base">
+          {/* PERSONAL BRAND */}
+          <div>
+            <div className="flex items-center gap-3 mb-3">
 
-            {["home", "about", "skills", "projects"].map((item) => (
-              <li key={item}>
+              <img
+                src="/projects/shubhamlogo.png"
+                alt="Logo"
+                className="w-8 h-8 object-contain"
+              />
+
+              <h3 className="text-xl font-bold text-[var(--accent)]">
+                Shubham Panghal
+              </h3>
+
+            </div>
+
+            <p className="text-gray-400 text-sm leading-relaxed">
+              Full Stack Developer focused on performance-driven,
+              scalable web solutions with modern design and
+              optimized backend architecture.
+            </p>
+          </div>
+
+          {/* QUICK LINKS */}
+          <div>
+            <h4 className="font-semibold mb-4 text-lg">
+              Explore
+            </h4>
+
+            <ul className="space-y-3 text-sm">
+              {["home", "about", "skills", "services", "projects"].map((item) => (
+                <li key={item}>
+                  <a
+                    href={`#${item}`}
+                    className="
+                      opacity-80
+                      hover:text-[var(--accent)]
+                      transition duration-300
+                      capitalize
+                    "
+                  >
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* SOCIAL */}
+          <div>
+            <h4 className="font-semibold mb-4 text-lg">
+              Connect
+            </h4>
+
+            <div className="flex gap-5">
+
+              {[{
+                icon: <GitHubIcon />,
+                link: "https://github.com/shubh791"
+              },
+              {
+                icon: <LinkedInIcon />,
+                link: "https://linkedin.com/in/shubham-panghal"
+              },
+              {
+                icon: <EmailIcon />,
+                link: "mailto:shubhampanghal.work@gmail.com"
+              }].map((item, i) => (
                 <a
-                  href={`#${item}`}
+                  key={i}
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="
-                  opacity-80
-                  hover:text-[var(--accent)]
-                  hover:translate-x-1
-                  transition-all
-                  duration-300
-                  inline-block
-                  capitalize
+                    p-3 rounded-full
+                    bg-white/5
+                    border border-white/10
+                    hover:border-[var(--accent)]
+                    hover:text-[var(--accent)]
+                    hover:shadow-[0_0_20px_var(--accent)]
+                    transition duration-300
                   "
                 >
-                  {item}
+                  {item.icon}
                 </a>
-              </li>
-            ))}
+              ))}
 
-          </ul>
-        </div>
-
-        {/* SOCIAL */}
-        <div>
-          <h4 className="font-semibold mb-4 text-lg tracking-wide">
-            Connect With Me
-          </h4>
-
-          <div className="flex gap-5">
-
-            {/* GITHUB */}
-            <a
-              href="https://github.com/shubh791"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="GitHub"
-              className="
-              p-3
-              rounded-full
-              border
-              border-white/10
-              hover:border-[var(--accent)]
-              hover:text-[var(--accent)]
-              transition-all
-              duration-300
-              hover:shadow-[0_0_18px_var(--accent)]
-              hover:scale-110
-              "
-            >
-              <GitHubIcon />
-            </a>
-
-            {/* LINKEDIN */}
-            <a
-              href="https://linkedin.com/in/shubham-panghal"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="LinkedIn"
-              className="
-              p-3
-              rounded-full
-              border
-              border-white/10
-              hover:border-[var(--accent)]
-              hover:text-[var(--accent)]
-              transition-all
-              duration-300
-              hover:shadow-[0_0_18px_var(--accent)]
-              hover:scale-110
-              "
-            >
-              <LinkedInIcon />
-            </a>
-
-            {/* EMAIL */}
-            <a
-              href="mailto:shubhampanghal.work@gmail.com"
-              title="Email"
-              className="
-              p-3
-              rounded-full
-              border
-              border-white/10
-              hover:border-[var(--accent)]
-              hover:text-[var(--accent)]
-              transition-all
-              duration-300
-              hover:shadow-[0_0_18px_var(--accent)]
-              hover:scale-110
-              "
-            >
-              <EmailIcon />
-            </a>
-
+            </div>
           </div>
+
+        </div>
+
+        {/* COPYRIGHT */}
+        <div className="text-center text-sm text-gray-500 border-t border-white/10 pt-6">
+          © {new Date().getFullYear()} Shubham Panghal — Crafted with passion.
         </div>
 
       </div>
-
-      {/* BOTTOM BAR */}
-      <div
-        className="
-        text-center
-        text-sm
-        opacity-60
-        border-t
-        border-white/10
-        pt-5
-        tracking-wide
-        "
-      >
-        © {new Date().getFullYear()} Shubham Panghal — All rights reserved.
-      </div>
-
     </footer>
   );
 }

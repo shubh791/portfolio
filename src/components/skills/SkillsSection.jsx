@@ -5,55 +5,60 @@ function SkillsSection() {
   return (
     <section
       id="skills"
-      className="relative py-24 px-6 md:px-12 overflow-hidden"
+      className="
+        relative
+        py-32 px-6 md:px-12
+        overflow-hidden
+        bg-gradient-to-b from-[#020617] via-[#050b17] to-[#020617]
+      "
     >
-
-      {/* FLOATING PARTICLES */}
+      {/* Premium Glow Background */}
       <div className="absolute inset-0 pointer-events-none">
-        {[...Array(12)].map((_, i) => (
-          <motion.span
-            key={i}
-            className="absolute w-2 h-2 rounded-full opacity-20"
-            style={{
-              background: "var(--accent)",
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -40, 0],
-              opacity: [0.15, 0.4, 0.15],
-            }}
-            transition={{
-              duration: 4 + Math.random() * 3,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-        ))}
+        <div className="
+          absolute top-[-150px] left-[-150px]
+          w-[400px] h-[400px]
+          bg-[var(--accent)]
+          opacity-10 blur-[150px]
+          rounded-full
+        " />
+
+        <div className="
+          absolute bottom-[-150px] right-[-150px]
+          w-[400px] h-[400px]
+          bg-purple-600
+          opacity-10 blur-[150px]
+          rounded-full
+        " />
       </div>
 
-      {/* HEADING */}
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-        className="text-center mb-14 relative z-10"
-      >
-        <h2 className="text-4xl md:text-5xl font-bold mb-2">
-          My <span style={{ color: "var(--accent)" }}>Skills</span>
-        </h2>
+      <div className="relative z-10 max-w-7xl mx-auto">
 
-        <p className="opacity-70">
-          Technologies and tools I work with regularly
-        </p>
-      </motion.div>
+        {/* Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-20"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+            Technology Stack &{" "}
+            <span className="text-[var(--accent)]">
+              Expertise
+            </span>
+          </h2>
 
-      {/* GRID */}
-      <div className="relative z-10">
+          <p className="text-gray-400 max-w-2xl mx-auto text-sm md:text-base">
+            A modern, production-focused technology stack used to build
+            scalable applications, secure backend systems, and polished
+            user interfaces.
+          </p>
+        </motion.div>
+
+        {/* Grid */}
         <SkillsGrid />
-      </div>
 
+      </div>
     </section>
   );
 }
