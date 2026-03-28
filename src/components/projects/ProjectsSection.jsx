@@ -68,9 +68,7 @@ function ProjectsSection() {
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
             Featured{" "}
-            <span className="text-[var(--accent)]">
-              Projects
-            </span>
+            <span className="gradient-text">Projects</span>
           </h2>
 
           <p className="text-gray-400 max-w-2xl mx-auto leading-relaxed text-sm md:text-base">

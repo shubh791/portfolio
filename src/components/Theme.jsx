@@ -1,49 +1,55 @@
 import { useState } from "react";
 import PaletteIcon from "@mui/icons-material/Palette";
+import { motion, AnimatePresence } from "framer-motion";
 
-/* THEMES */
 const themes = {
-  dark: {
-    name: "Dark Blue",
-    accent: "#3b82f6",
-    bg: "#020617",
-    text: "#e5e7eb",
-    icon: "🌙",
+  indigo: {
+    name: "Indigo",
+    accent: "#818cf8",
+    bg: "#040411",
+    text: "#e2e8f0",
+    icon: "✦",
+    gradient: "from-indigo-500 to-cyan-500",
   },
-  neon: {
-    name: "Neon Purple",
-    accent: "#a855f7",
+  violet: {
+    name: "Violet",
+    accent: "#a78bfa",
     bg: "#0b0218",
     text: "#f3e8ff",
     icon: "⚡",
+    gradient: "from-violet-500 to-purple-400",
   },
   aqua: {
     name: "Aqua",
     accent: "#22d3ee",
-    bg: "#00161d",
+    bg: "#00101a",
     text: "#ecfeff",
-    icon: "💧",
-  },
-  amber: {
-    name: "Amber",
-    accent: "#f59e0b",
-    bg: "#120800",
-    text: "#fff7ed",
-    icon: "🔥",
+    icon: "◈",
+    gradient: "from-cyan-400 to-sky-500",
   },
   emerald: {
     name: "Emerald",
     accent: "#10b981",
-    bg: "#00140f",
+    bg: "#00120e",
     text: "#ecfdf5",
-    icon: "🌿",
+    icon: "◉",
+    gradient: "from-emerald-400 to-teal-500",
   },
   rose: {
     name: "Rose",
     accent: "#f43f5e",
-    bg: "#1a0206",
+    bg: "#130208",
     text: "#ffe4e6",
-    icon: "🌸",
+    icon: "◆",
+    gradient: "from-rose-500 to-pink-400",
+  },
+  amber: {
+    name: "Amber",
+    accent: "#f59e0b",
+    bg: "#100900",
+    text: "#fff7ed",
+    icon: "◇",
+    gradient: "from-amber-400 to-orange-500",
   },
 };
 
@@ -60,108 +66,81 @@ function ThemeSwitcher() {
 
   return (
     <>
-      {/* OPEN BUTTON */}
+      {/* TRIGGER BUTTON */}
       <button
         onClick={() => setOpen(true)}
-        className="
-          fixed right-6 top-[45vh]
-          flex items-center gap-2
-          px-4 py-2 rounded-xl
-          bg-[var(--accent)]
-          text-black text-sm font-semibold
-          shadow-lg hover:scale-105 transition
-          z-50
-        "
+        className="fixed right-5 top-[45vh] flex items-center gap-2 px-3 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 text-[var(--accent)] text-xs font-semibold shadow-lg hover:scale-105 hover:border-[var(--accent)]/40 hover:bg-white/[0.07] transition-all duration-300 z-50 backdrop-blur-md"
+        title="Change Theme"
       >
         <PaletteIcon fontSize="small" />
-        Theme
+        <span className="hidden sm:inline tracking-wide">Theme</span>
       </button>
 
       {/* MODAL */}
-      {open && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center">
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/70 backdrop-blur-md z-50 flex items-center justify-center p-4"
+            onClick={(e) => e.target === e.currentTarget && setOpen(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.92, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 10 }}
+              transition={{ duration: 0.2 }}
+              className="bg-[#08081a] border border-white/10 rounded-2xl p-7 max-w-sm w-full shadow-2xl"
+            >
+              <h2 className="text-lg font-semibold mb-1 text-center">
+                Choose Theme
+              </h2>
+              <p className="text-xs text-slate-500 text-center mb-6">
+                Select your preferred color palette
+              </p>
 
-          <div className="
-            bg-[#070b14]
-            border border-white/10
-            rounded-2xl
-            p-8
-            max-w-md w-full
-            shadow-2xl
-          ">
+              {/* THEME GRID */}
+              <div className="grid grid-cols-2 gap-3 mb-6">
+                {Object.values(themes).map((theme) => (
+                  <button
+                    key={theme.name}
+                    onClick={() => setSelected(theme)}
+                    className={`flex items-center gap-3 p-3 rounded-xl border transition-all duration-200 text-left ${
+                      selected?.name === theme.name
+                        ? "border-[var(--accent)] bg-white/[0.04]"
+                        : "border-white/[0.06] hover:border-white/20 hover:bg-white/[0.03]"
+                    }`}
+                  >
+                    <div
+                      className={`w-7 h-7 rounded-full bg-gradient-to-br ${theme.gradient} flex-shrink-0`}
+                    />
+                    <span className="text-sm text-slate-300 font-medium">
+                      {theme.icon} {theme.name}
+                    </span>
+                  </button>
+                ))}
+              </div>
 
-            <h2 className="text-xl font-semibold mb-6 text-center">
-              Choose Theme
-            </h2>
-
-            {/* THEME OPTIONS */}
-            <div className="grid grid-cols-2 gap-4 mb-6">
-
-              {Object.values(themes).map((theme) => (
+              {/* ACTIONS */}
+              <div className="flex gap-3">
                 <button
-                  key={theme.name}
-                  onClick={() => setSelected(theme)}
-                  className={`
-                    flex items-center gap-3 p-3 rounded-xl
-                    border transition
-                    ${
-                      selected === theme
-                        ? "border-[var(--accent)]"
-                        : "border-white/10"
-                    }
-                  `}
+                  onClick={() => { setSelected(null); setOpen(false); }}
+                  className="flex-1 py-2.5 rounded-xl border border-white/10 text-sm text-slate-400 hover:border-white/20 hover:text-white transition-all duration-200"
                 >
-                  <span
-                    className="w-6 h-6 rounded-full"
-                    style={{ background: theme.accent }}
-                  />
-
-                  <span className="text-sm flex items-center gap-1">
-                    {theme.icon} {theme.name}
-                  </span>
+                  Cancel
                 </button>
-              ))}
-
-            </div>
-
-            {/* ACTION BUTTONS */}
-            <div className="flex gap-4">
-
-              <button
-                onClick={() => {
-                  setSelected(null);
-                  setOpen(false);
-                }}
-                className="
-                  flex-1 py-2 rounded-lg
-                  border border-white/20
-                  hover:border-red-400 transition
-                "
-              >
-                Cancel
-              </button>
-
-              <button
-                onClick={() => {
-                  if (selected) applyTheme(selected);
-                  setOpen(false);
-                }}
-                className="
-                  flex-1 py-2 rounded-lg
-                  bg-[var(--accent)]
-                  text-black font-semibold
-                  hover:scale-105 transition
-                "
-              >
-                Apply
-              </button>
-
-            </div>
-
-          </div>
-
-        </div>
-      )}
+                <button
+                  onClick={() => { if (selected) applyTheme(selected); setOpen(false); }}
+                  className="flex-1 py-2.5 rounded-xl btn-glow text-sm font-semibold"
+                >
+                  Apply
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

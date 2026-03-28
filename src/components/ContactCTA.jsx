@@ -54,9 +54,7 @@ function ContactCTA() {
           className="text-4xl md:text-6xl font-bold mb-6"
         >
           Let’s Create{" "}
-          <span className="text-[var(--accent)]">
-            Impact Together
-          </span>
+          <span className="gradient-text">Impact Together</span>
         </motion.h2>
 
         <p className="text-gray-400 mb-12 text-lg">

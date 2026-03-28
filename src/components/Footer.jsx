@@ -23,9 +23,7 @@ function Footer() {
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold mb-4">
             Let’s Build Something{" "}
-            <span className="text-[var(--accent)]">
-              Amazing
-            </span>
+            <span className="gradient-text">Amazing</span>
           </h2>
 
           <p className="text-gray-400 max-w-xl mx-auto">
@@ -42,12 +40,12 @@ function Footer() {
             <div className="flex items-center gap-3 mb-3">
 
               <img
-                src="/projects/shubhamlogo.png"
-                alt="Logo"
+                src="/projects/shubham-logo.svg"
+                alt="SP Logo"
                 className="w-8 h-8 object-contain"
               />
 
-              <h3 className="text-xl font-bold text-[var(--accent)]">
+              <h3 className="text-xl font-bold gradient-text">
                 Shubham Panghal
               </h3>
 

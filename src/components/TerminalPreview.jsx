@@ -9,113 +9,98 @@ const techStack = [
   "Real-Time APIs",
 ];
 
+const barHeights = [10, 18, 12, 22, 15, 24, 17, 20, 13, 21];
+
 function SystemPanel() {
   const [uptime, setUptime] = useState(0);
   const [metric, setMetric] = useState(98);
   const [stackIndex, setStackIndex] = useState(0);
 
-  /* Uptime counter */
   useEffect(() => {
-    const timer = setInterval(() => {
-      setUptime((prev) => prev + 1);
-    }, 1000);
-    return () => clearInterval(timer);
+    const t = setInterval(() => setUptime((p) => p + 1), 1000);
+    return () => clearInterval(t);
   }, []);
 
-  /* Metric auto-update */
   useEffect(() => {
-    const metricTimer = setInterval(() => {
-      setMetric(95 + Math.floor(Math.random() * 5));
-    }, 3000);
-    return () => clearInterval(metricTimer);
+    const t = setInterval(() => setMetric(95 + Math.floor(Math.random() * 5)), 3000);
+    return () => clearInterval(t);
   }, []);
 
-  /* Tech stack cycle */
   useEffect(() => {
-    const stackTimer = setInterval(() => {
-      setStackIndex((prev) => (prev + 1) % techStack.length);
-    }, 2500);
-    return () => clearInterval(stackTimer);
+    const t = setInterval(() => setStackIndex((p) => (p + 1) % techStack.length), 2500);
+    return () => clearInterval(t);
   }, []);
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      className="
-        w-full max-w-[520px]
-        mx-auto
-        p-6 sm:p-8
-        rounded-3xl
-        bg-[#0b1220]/80
-        border border-white/10
-        backdrop-blur-2xl
-        shadow-2xl
-        relative overflow-hidden
-      "
+      transition={{ duration: 0.7 }}
+      className="w-full max-w-[520px] mx-auto p-6 sm:p-8 rounded-3xl bg-[#080f1f]/90 border border-white/10 backdrop-blur-2xl shadow-2xl relative overflow-hidden"
     >
 
-      {/* Accent glow */}
-      <div className="absolute -top-20 -right-20 w-40 h-40 bg-[var(--accent)] opacity-10 blur-3xl rounded-full" />
+      {/* Accent corner glow */}
+      <div className="absolute -top-16 -right-16 w-32 h-32 bg-[var(--accent)] opacity-15 blur-2xl rounded-full" />
+      <div className="absolute -bottom-16 -left-16 w-32 h-32 bg-purple-600 opacity-10 blur-2xl rounded-full" />
 
-      {/* HEADER */}
+      {/* HEADER ROW */}
       <div className="flex justify-between items-center mb-6">
-        <p className="text-xs uppercase tracking-widest opacity-60">
-          Production System
-        </p>
+        {/* Mac-style dots */}
+        <div className="flex items-center gap-1.5">
+          <div className="w-3 h-3 rounded-full bg-red-500/80" />
+          <div className="w-3 h-3 rounded-full bg-yellow-400/80" />
+          <div className="w-3 h-3 rounded-full bg-green-500/80" />
+        </div>
 
-        {/* Heartbeat */}
         <span className="flex items-center gap-2 text-green-400 text-xs">
-          <span className="w-2 h-2 bg-green-400 rounded-full animate-ping"></span>
+          <span className="w-2 h-2 bg-green-400 rounded-full animate-ping" />
           System Healthy
         </span>
       </div>
 
-      {/* CYBERGRAM PROJECT */}
-      <div className="mb-6">
-        <p className="text-xs opacity-60 mb-1">Live Project</p>
-
+      {/* LIVE PROJECT — PrepZena */}
+      <div className="mb-6 p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-[var(--accent)] transition-colors duration-300">
+        <p className="text-[10px] uppercase tracking-widest opacity-50 mb-2">
+          Latest Live Project
+        </p>
         <a
-          href="https://cybergram.in"
+          href="https://prepzena.vercel.app/"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-xl font-semibold text-[var(--accent)] hover:underline"
+          className="text-lg font-semibold text-[var(--accent)] hover:underline underline-offset-2 block"
         >
-          Cybergram Platform →
+          PrepZena — Learn To Code Smarter  →
         </a>
-
-        <p className="text-xs text-gray-400">
-          Full-stack cybersecurity awareness platform
+        <p className="text-xs text-gray-400 mt-1">
+          AI-powered mock interview platform with real-time feedback
         </p>
       </div>
 
       {/* METRICS GRID */}
-      <div className="grid grid-cols-2 gap-4 text-sm mb-6">
-
-        <Metric title="Performance" value={`${metric}%`} />
+      <div className="grid grid-cols-2 gap-3 text-sm mb-6">
+        <Metric title="Performance" value={`${metric}%`} glow />
         <Metric title="Uptime" value={`${uptime}s`} />
         <Metric title="Tech Stack" value={techStack[stackIndex]} />
-        <Metric title="Deployment" value="Production" />
-
+        <Metric title="Status" value="Production" />
       </div>
 
-      {/* API Simulation */}
-      <div className="bg-white/5 border border-white/10 rounded-xl p-3 text-xs font-mono">
-        <span className="opacity-60">API:</span>{" "}
+      {/* API STATUS */}
+      <div className="bg-black/30 border border-white/10 rounded-xl p-3 text-xs font-mono mb-5">
+        <span className="opacity-50">API:</span>{" "}
         <span className="text-green-400 animate-pulse">
-          GET /cybergram/status → 200 OK
+          GET /prepzena/status → 200 OK
         </span>
       </div>
 
-      {/* Subtle graph animation */}
-      <div className="mt-6 flex items-end gap-1 h-10">
-        {[10, 18, 12, 20, 15, 22, 16].map((h, i) => (
+      {/* ACTIVITY BARS */}
+      <div className="flex items-end gap-1 h-12">
+        {barHeights.map((h, i) => (
           <motion.div
             key={i}
-            animate={{ height: `${h}px` }}
-            transition={{ duration: 1.2, repeat: Infinity, repeatType: "mirror" }}
-            className="w-2 bg-[var(--accent)] rounded-sm opacity-70"
+            animate={{ height: [`${h}px`, `${h + 6}px`, `${h}px`] }}
+            transition={{ duration: 1.5 + i * 0.1, repeat: Infinity, ease: "easeInOut" }}
+            className="flex-1 bg-[var(--accent)] rounded-sm opacity-70"
+            style={{ minWidth: "6px" }}
           />
         ))}
       </div>
@@ -124,11 +109,11 @@ function SystemPanel() {
   );
 }
 
-function Metric({ title, value }) {
+function Metric({ title, value, glow }) {
   return (
-    <div className="bg-white/5 border border-white/10 rounded-xl p-3">
-      <p className="opacity-60 text-xs mb-1">{title}</p>
-      <p className="font-medium">{value}</p>
+    <div className={`bg-white/5 border rounded-xl p-3 transition-colors duration-200 ${glow ? "border-[var(--accent)]/30" : "border-white/10"}`}>
+      <p className="opacity-50 text-[10px] uppercase tracking-wider mb-1">{title}</p>
+      <p className={`font-semibold text-sm ${glow ? "text-[var(--accent)]" : ""}`}>{value}</p>
     </div>
   );
 }

@@ -10,29 +10,14 @@ function Services() {
         relative
         py-36 px-6 md:px-12
         overflow-hidden
-        bg-gradient-to-b from-[#020617] via-[#050b17] to-[#020617]
+        bg-transparent
       "
     >
 
-      {/* PREMIUM BACKGROUND GLOWS */}
+      {/* BACKGROUND GLOWS */}
       <div className="absolute inset-0 pointer-events-none">
-
-        <div className="
-          absolute top-[-150px] left-[-150px]
-          w-[400px] h-[400px]
-          bg-[var(--accent)]
-          opacity-10 blur-[150px]
-          rounded-full
-        " />
-
-        <div className="
-          absolute bottom-[-150px] right-[-150px]
-          w-[400px] h-[400px]
-          bg-purple-600
-          opacity-10 blur-[150px]
-          rounded-full
-        " />
-
+        <div className="absolute top-[-150px] left-[-150px] w-[400px] h-[400px] bg-violet-700 opacity-10 blur-[150px] rounded-full" />
+        <div className="absolute bottom-[-150px] right-[-150px] w-[400px] h-[400px] bg-indigo-600 opacity-10 blur-[150px] rounded-full" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
@@ -47,9 +32,7 @@ function Services() {
         >
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-5">
             Solutions I{" "}
-            <span className="text-[var(--accent)]">
-              Provide
-            </span>
+            <span className="gradient-text">Provide</span>
           </h2>
 
           <p className="text-gray-400 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
