@@ -1,12 +1,15 @@
 {
-    "compilerOptions": {
-      "baseUrl": ".",
-      "paths": {
-        "@/*": ["./*"],
-        "@/components/*": ["./components/*"],
-        "@/lib/*": ["./lib/*"],
-        "@/app/*": ["./app/*"]
-      }
-    },
-    "exclude": ["node_modules", ".next"]
-  }
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"],
+      "@/components/*": ["./components/*"],
+      "@/lib/*": ["./lib/*"],
+      "@/app/*": ["./app/*"],
+      "@/utils/*": ["./utils/*"],
+      "@/hooks/*": ["./hooks/*"],
+      "@/data/*": ["./data/*"]
+    }
+  },
+  "exclude": ["node_modules", ".next"]
+}
