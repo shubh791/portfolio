@@ -24,7 +24,7 @@ function ProjectShowcase() {
     intervalRef.current = setInterval(() => {
       setDirection(1)
       setActive(i => (i + 1) % projectsData.length)
-    }, 3500)
+    }, 5000)
   }, [])
 
   useEffect(() => {
@@ -165,7 +165,7 @@ function ProjectShowcase() {
 
         <div className="flex items-center gap-1.5 text-[10px] text-gray-600 font-mono">
           <span className="w-1 h-1 rounded-full bg-[var(--accent)] animate-pulse" />
-          Auto 3.5s
+          Auto 5s
         </div>
       </div>
 
