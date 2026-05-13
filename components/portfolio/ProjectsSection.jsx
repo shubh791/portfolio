@@ -134,13 +134,33 @@ function ProjectShowcase() {
                 )}
                 {project.github && (
                   <a
-                    href={project.github} target="_blank" rel="noopener noreferrer"
-                    className={`flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-medium text-gray-300 hover:text-white transition-all ${project.live ? "px-4" : "flex-1"}`}
-                    style={{ border: "1px solid rgba(255,255,255,0.1)" }}
-                    onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(var(--accent-rgb),0.4)"; e.currentTarget.style.background = "rgba(var(--accent-rgb),0.05)" }}
-                    onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)"; e.currentTarget.style.background = "transparent" }}
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`group flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${project.live ? "px-4" : "flex-1"}`}
+                    style={{
+                      background: "linear-gradient(135deg, rgba(129,140,248,0.18) 0%, rgba(167,139,250,0.12) 100%)",
+                      border: "1px solid rgba(129,140,248,0.45)",
+                      color: "#a5b4fc",
+                      boxShadow: "0 0 18px rgba(129,140,248,0.18)",
+                    }}
+                    onMouseEnter={e => {
+                      e.currentTarget.style.background = "linear-gradient(135deg, rgba(129,140,248,0.32) 0%, rgba(167,139,250,0.22) 100%)"
+                      e.currentTarget.style.borderColor = "rgba(129,140,248,0.75)"
+                      e.currentTarget.style.boxShadow = "0 0 28px rgba(129,140,248,0.38), 0 0 8px rgba(167,139,250,0.2)"
+                      e.currentTarget.style.color = "#fff"
+                      e.currentTarget.style.transform = "translateY(-1px)"
+                    }}
+                    onMouseLeave={e => {
+                      e.currentTarget.style.background = "linear-gradient(135deg, rgba(129,140,248,0.18) 0%, rgba(167,139,250,0.12) 100%)"
+                      e.currentTarget.style.borderColor = "rgba(129,140,248,0.45)"
+                      e.currentTarget.style.boxShadow = "0 0 18px rgba(129,140,248,0.18)"
+                      e.currentTarget.style.color = "#a5b4fc"
+                      e.currentTarget.style.transform = "translateY(0)"
+                    }}
                   >
-                    <Github size={13} /> {!project.live && "Source Code"}
+                    <Github size={13} />
+                    {!project.live && "View on GitHub"}
                   </a>
                 )}
               </div>
@@ -185,10 +205,27 @@ function ProjectShowcase() {
           href="https://github.com/shubh791"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold text-white transition-all whitespace-nowrap"
-          style={{ border: "1px solid rgba(255,255,255,0.15)", background: "rgba(255,255,255,0.05)" }}
-          onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(var(--accent-rgb),0.4)"; e.currentTarget.style.background = "rgba(var(--accent-rgb),0.08)" }}
-          onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)"; e.currentTarget.style.background = "rgba(255,255,255,0.05)" }}
+          className="flex-shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all duration-300"
+          style={{
+            background: "linear-gradient(135deg, rgba(129,140,248,0.22) 0%, rgba(167,139,250,0.14) 100%)",
+            border: "1px solid rgba(129,140,248,0.5)",
+            color: "#a5b4fc",
+            boxShadow: "0 0 16px rgba(129,140,248,0.2)",
+          }}
+          onMouseEnter={e => {
+            e.currentTarget.style.background = "linear-gradient(135deg, rgba(129,140,248,0.38) 0%, rgba(167,139,250,0.26) 100%)"
+            e.currentTarget.style.borderColor = "rgba(129,140,248,0.8)"
+            e.currentTarget.style.boxShadow = "0 0 28px rgba(129,140,248,0.4)"
+            e.currentTarget.style.color = "#fff"
+            e.currentTarget.style.transform = "translateY(-1px)"
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.background = "linear-gradient(135deg, rgba(129,140,248,0.22) 0%, rgba(167,139,250,0.14) 100%)"
+            e.currentTarget.style.borderColor = "rgba(129,140,248,0.5)"
+            e.currentTarget.style.boxShadow = "0 0 16px rgba(129,140,248,0.2)"
+            e.currentTarget.style.color = "#a5b4fc"
+            e.currentTarget.style.transform = "translateY(0)"
+          }}
         >
           <Github size={12} />
           GitHub
@@ -351,11 +388,31 @@ export default function ProjectsSection() {
             href="https://github.com/shubh791"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-[var(--accent)] transition-colors font-medium group"
+            className="group inline-flex items-center gap-2.5 px-6 py-3 rounded-xl text-sm font-bold transition-all duration-300"
+            style={{
+              background: "linear-gradient(135deg, rgba(129,140,248,0.16) 0%, rgba(167,139,250,0.10) 100%)",
+              border: "1px solid rgba(129,140,248,0.42)",
+              color: "#a5b4fc",
+              boxShadow: "0 0 20px rgba(129,140,248,0.16)",
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.background = "linear-gradient(135deg, rgba(129,140,248,0.30) 0%, rgba(167,139,250,0.20) 100%)"
+              e.currentTarget.style.borderColor = "rgba(129,140,248,0.72)"
+              e.currentTarget.style.boxShadow = "0 0 36px rgba(129,140,248,0.36), 0 0 10px rgba(167,139,250,0.2)"
+              e.currentTarget.style.color = "#fff"
+              e.currentTarget.style.transform = "translateY(-2px)"
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.background = "linear-gradient(135deg, rgba(129,140,248,0.16) 0%, rgba(167,139,250,0.10) 100%)"
+              e.currentTarget.style.borderColor = "rgba(129,140,248,0.42)"
+              e.currentTarget.style.boxShadow = "0 0 20px rgba(129,140,248,0.16)"
+              e.currentTarget.style.color = "#a5b4fc"
+              e.currentTarget.style.transform = "translateY(0)"
+            }}
           >
-            <Github size={14} />
+            <Github size={15} />
             View all projects on GitHub
-            <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
+            <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-300" />
           </a>
         </motion.div>
       </div>
