@@ -283,7 +283,7 @@ export default function Footer() {
               style={{ background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.2)" }}
             >
               <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-              <span className="text-[10px] text-green-400 font-medium tracking-wide">All systems live</span>
+              <span className="text-[10px] text-green-400 font-medium tracking-wide">Open to Work</span>
             </div>
           </div>
         </div>

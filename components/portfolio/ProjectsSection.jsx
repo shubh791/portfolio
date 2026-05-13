@@ -53,7 +53,10 @@ function ProjectShowcase() {
     <div className="flex flex-col h-full gap-4">
 
       {/* Carousel card */}
-      <div className="relative rounded-2xl overflow-hidden flex-1" style={{ border: "1px solid rgba(255,255,255,0.09)", minHeight: 480 }}>
+      <div
+        className="relative rounded-2xl overflow-hidden"
+        style={{ border: "1px solid rgba(255,255,255,0.09)" }}
+      >
         <AnimatePresence custom={direction} mode="wait">
           <motion.div
             key={active}
@@ -63,7 +66,7 @@ function ProjectShowcase() {
             animate="center"
             exit="exit"
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute inset-0 flex flex-col"
+            className="w-full flex flex-col"
             style={{ background: "rgba(10,12,30,0.95)" }}
           >
             {/* Top accent */}
@@ -91,8 +94,8 @@ function ProjectShowcase() {
             </div>
 
             {/* Screenshot */}
-            <div className="relative overflow-hidden flex-shrink-0" style={{ height: 240 }}>
-              <Image src={project.image} alt={project.title} fill className="object-cover object-top" sizes="700px" />
+            <div className="relative overflow-hidden flex-shrink-0 h-[200px] sm:h-[230px] md:h-[270px]">
+              <Image src={project.image} alt={project.title} fill className="object-cover object-center" sizes="700px" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#060814]/95 via-[#060814]/10 to-transparent" />
               <div className="absolute bottom-3 left-4 flex items-center gap-2 z-10">
                 {project.featured && (
@@ -111,11 +114,11 @@ function ProjectShowcase() {
             </div>
 
             {/* Info */}
-            <div className="p-5 flex flex-col flex-1">
-              <h3 className="text-base font-black text-white leading-snug mb-1.5">{project.title}</h3>
-              <p className="text-[11px] text-gray-400 leading-relaxed mb-3 line-clamp-2">{project.description}</p>
+            <div className="p-4 sm:p-5 flex flex-col gap-3">
+              <h3 className="text-base font-black text-white leading-snug">{project.title}</h3>
+              <p className="text-[11px] text-gray-400 leading-relaxed">{project.description}</p>
 
-              <div className="flex flex-wrap gap-1.5 mb-4">
+              <div className="flex flex-wrap gap-1.5">
                 {project.tech.map(t => (
                   <span key={t} className="text-[9px] px-2 py-0.5 rounded-full font-mono" style={{ background: "rgba(129,140,248,0.08)", border: "1px solid rgba(129,140,248,0.2)", color: "rgba(129,140,248,0.85)" }}>
                     {t}
@@ -123,7 +126,7 @@ function ProjectShowcase() {
                 ))}
               </div>
 
-              <div className="flex gap-2 mt-auto">
+              <div className="flex gap-2">
                 {project.live && (
                   <a href={project.live} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold text-black btn-glow transition-all">
                     <ExternalLink size={13} /> Live Demo
@@ -228,18 +231,18 @@ export default function ProjectsSection() {
           </p>
         </motion.div>
 
-        {/* Two-column */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+        {/* Two-column (single on mobile) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch max-w-2xl mx-auto lg:max-w-none">
 
-          {/* LEFT — image with glow */}
+          {/* LEFT — image with glow (desktop only) */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             viewport={{ once: true }}
-            className="relative flex flex-col gap-4"
+            className="relative flex-col gap-4 hidden lg:flex"
           >
-            {/* Photo */}
+            {/* Photo — mobile: shubham3, desktop: shubham2 */}
             <div
               className="relative rounded-2xl overflow-hidden flex-1"
               style={{
@@ -248,14 +251,17 @@ export default function ProjectsSection() {
                 boxShadow: "0 0 50px rgba(129,140,248,0.18), 0 0 100px rgba(129,140,248,0.08), inset 0 0 50px rgba(129,140,248,0.04)",
               }}
             >
-              <Image src="/images/shubham2.png" alt="Shubham Panghal" fill className="object-cover object-top" priority />
+              {/* Mobile image */}
+              <Image src="/images/shubham3.png" alt="Shubham Panghal" fill className="object-cover object-top block lg:hidden" priority />
+              {/* Desktop image */}
+              <Image src="/images/shubham2.png" alt="Shubham Panghal" fill className="object-cover object-top hidden lg:block" priority />
               <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 80% 35% at 50% 0%, rgba(129,140,248,0.14), transparent 55%)" }} />
               <div className="absolute bottom-0 inset-x-0 h-28 pointer-events-none" style={{ background: "linear-gradient(to top, rgba(3,7,18,0.75), transparent)" }} />
               <div className="absolute right-0 inset-y-0 w-16 pointer-events-none hidden lg:block" style={{ background: "linear-gradient(to left, rgba(3,7,18,0.65), transparent)" }} />
             </div>
 
-            {/* Highlights strip */}
-            <div className="grid grid-cols-2 gap-3">
+            {/* Highlights strip — desktop only */}
+            <div className="hidden lg:grid grid-cols-2 gap-3">
               {HIGHLIGHTS.map(({ icon: Icon, label, sub, color }, i) => (
                 <motion.div
                   key={label}
@@ -277,7 +283,7 @@ export default function ProjectsSection() {
               ))}
             </div>
 
-            {/* Resume button */}
+            {/* Resume button — desktop only */}
             <motion.a
               href="/resume.pdf"
               target="_blank"
@@ -286,7 +292,7 @@ export default function ProjectsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.3 }}
               viewport={{ once: true }}
-              className="group flex items-center justify-between gap-3 p-4 rounded-xl transition-all duration-300"
+              className="hidden lg:flex group items-center justify-between gap-3 p-4 rounded-xl transition-all duration-300"
               style={{
                 background: "linear-gradient(135deg, rgba(var(--accent-rgb),0.08), rgba(var(--accent-rgb),0.03))",
                 border: "1px solid rgba(var(--accent-rgb),0.28)",

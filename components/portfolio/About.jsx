@@ -51,7 +51,7 @@ const TAGS = [
   "Next.js",
   "Tailwind CSS",
   "Framer Motion",
-  "TypeScript",
+  "HTML/CSS",
   "JavaScript",
   "Component Systems",
   "Responsive Design",

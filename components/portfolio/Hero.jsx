@@ -23,7 +23,7 @@ const TECH = [
   { name: "Tailwind CSS",  color: "#06B6D4" },
   { name: "Framer Motion", color: "#a78bfa" },
   { name: "JavaScript",    color: "#F7DF1E" },
-  { name: "TypeScript",    color: "#3178C6" },
+  { name: "HTML/CSS",      color: "#E34F26" },
 ]
 
 const STATS = [
